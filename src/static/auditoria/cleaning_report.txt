@@ -1,0 +1,13 @@
+REPORTE DE LIMPIEZA Y PREPROCESAMIENTO
+========================================
+Registros iniciales: 100
+Registros después de limpieza: 100
+Duplicados eliminados: 0
+
+OPERACIONES REALIZADAS:
+- Eliminación de duplicados (drop_duplicates)
+- Imputación de valores nulos en 'title' y 'body'
+- Conversión de tipos de datos a INT para IDs
+- Normalización: Títulos convertidos a MAYÚSCULAS
+----------------------------------------
+Estado: DATOS CONSISTENTES PARA MODELADO
