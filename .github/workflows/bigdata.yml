@@ -2,33 +2,28 @@ name: Ejecucion Automatizada de Ingesta
 
 on:
   push:
-    branches: [ main ]  # Se ejecuta cada vez que subes cambios a la rama main
-  workflow_dispatch:     # Permite ejecutarlo manualmente desde la pestaña "Actions"
+    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    # AGREGA ESTAS LÍNEAS AQUÍ:
+    permissions:
+      contents: write
 
     steps:
       - name: Descargar codigo del repositorio
         uses: actions/checkout@v3
-
-      - name: Configurar Python 3.12
-        uses: actions/setup-python@v4
+# ... (el resto del archivo sigue igual)
+      - name: Configurar AWS CLI
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          python-version: '3.12'
-
-      - name: Instalar dependencias
-        run: |
-          pip install requests pandas openpyxl
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
 
       - name: Ejecutar script de ingesta
-        run: python src/ingestion.py
-
-      - name: Guardar cambios en el repositorio
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add src/db/ingestion.db src/xlsx/ingestion.xlsx src/static/auditoria/ingestion.txt
-          git commit -m "Actualización automática de datos y evidencias" || echo "Sin cambios para commitear"
-          git push
+          chmod +x ./scripts/ingesta.sh
+          ./scripts/ingesta.sh  
