@@ -1,0 +1,14 @@
+REPORTE DE ENRIQUECIMIENTO DE DATOS
+========================================
+Registros en dataset base: 100
+Registros en dataset enriquecido: 100
+
+FUENTES INTEGRADAS:
+- usuarios.json: Información de autores (nombre, país)
+- categorias.csv: Clasificación por ID de post
+
+OPERACIONES:
+- Merge 'Left Join' sobre userId: 100 coincidencias.
+- Imputación de valores para registros sin match (Autor Anónimo).
+----------------------------------------
+Estado: INTEGRACIÓN EXITOSA PARA MODELADO FINAL
